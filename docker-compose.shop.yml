@@ -3,7 +3,7 @@ version: '3.8'
 services:
   shop:
     build:
-      context: ../..
+      context: .
       dockerfile: apps/shop/Dockerfile
     container_name: nexlevel-shop
     ports:
