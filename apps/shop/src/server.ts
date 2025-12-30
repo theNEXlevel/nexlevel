@@ -26,6 +26,22 @@ const angularApp = new AngularNodeAppEngine();
  * ```
  */
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  const memoryUsage = process.memoryUsage();
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    memory: {
+      rss: `${Math.round(memoryUsage.rss / 1024 / 1024)}MB`,
+      heapUsed: `${Math.round(memoryUsage.heapUsed / 1024 / 1024)}MB`,
+      heapTotal: `${Math.round(memoryUsage.heapTotal / 1024 / 1024)}MB`,
+      external: `${Math.round(memoryUsage.external / 1024 / 1024)}MB`,
+    },
+  });
+});
+
 /**
  * Serve static files from /browser
  */
