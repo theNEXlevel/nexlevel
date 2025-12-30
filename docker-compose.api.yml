@@ -12,6 +12,12 @@ services:
       - HOST=0.0.0.0
       - PORT=3333
       - NODE_ENV=production
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3333/health']
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
     restart: unless-stopped
     networks:
       - nexlevel-network

@@ -29,4 +29,11 @@ COPY --from=builder /workspace/dist/apps/shop .
 
 # Angular SSR applications don't need npm install as dependencies are bundled
 
+# Add curl for healthcheck
+RUN apk add --no-cache curl
+
+# Healthcheck configuration
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:4000/health || exit 1
+
 CMD [ "node", "server/server.mjs" ]

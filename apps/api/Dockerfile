@@ -31,4 +31,11 @@ COPY --from=builder /workspace/dist/apps/api .
 # Install production dependencies if needed
 RUN npm --omit=dev -f install
 
+# Add curl for healthcheck
+RUN apk add --no-cache curl
+
+# Healthcheck configuration
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:3333/health || exit 1
+
 CMD [ "node", "main.js" ]
