@@ -1,14 +1,21 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map, catchError, of } from 'rxjs';
-import { Product, ApiResponse, PaginatedResponse, ProductFilter } from '@org/models';
+import {
+  Product,
+  ApiResponse,
+  PaginatedResponse,
+  ProductFilter,
+} from '@org/models';
+import { CONFIG } from '../tokens/config.token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3333/api';
+  private readonly config = inject(CONFIG);
+  private readonly apiUrl = this.config.apiUrl;
 
   // Signals for state management
   private readonly loadingSignal = signal(false);
