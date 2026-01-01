@@ -7,7 +7,7 @@ services:
       dockerfile: apps/shop/Dockerfile
     container_name: nexlevel-shop
     ports:
-      - '4000:4000'
+      - '${HOST_PORT:-4000}:4000'
     environment:
       - PORT=4000
       - NODE_ENV=production
