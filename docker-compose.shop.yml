@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: apps/shop/Dockerfile
     ports:
-      - '${HOST_PORT-4000}:4000'
+      - "${HOST_PORT:-}${HOST_PORT:+:}4000"
     environment:
       - PORT=4000
       - NODE_ENV=production
