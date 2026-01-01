@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: apps/shop/Dockerfile
-    container_name: nexlevel-shop
     ports:
       - '${HOST_PORT-4000}:4000'
     environment:

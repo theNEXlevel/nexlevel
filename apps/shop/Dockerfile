@@ -20,8 +20,6 @@ RUN npx nx run shop:build
 # Production stage
 FROM docker.io/node:lts-alpine
 
-ENV PORT=4000
-
 WORKDIR /app
 
 # Copy built application from builder stage
