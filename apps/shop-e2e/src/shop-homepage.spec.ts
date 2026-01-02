@@ -20,9 +20,7 @@ test.describe('Shop Homepage', () => {
     // Check footer content
     const footer = page.locator('footer');
     await expect(footer).toContainText('© 2025 Nx Shop Demo');
-    await expect(footer).toContainText(
-      'Frontend (Angular) + Backend (Express) + Shared Libraries'
-    );
+    await expect(footer).toContainText('Frontend (Angular) + Backend (Express) + Shared Libraries');
   });
 
   test('should redirect to products page by default', async ({ page }) => {

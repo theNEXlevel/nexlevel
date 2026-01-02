@@ -81,7 +81,7 @@ test.describe('Product Listing Page', () => {
         return resultsElement && resultsElement.textContent !== initialText;
       },
       initialText,
-      { timeout: 5000 }
+      { timeout: 5000 },
     );
 
     // Additional wait to ensure DOM is fully updated
