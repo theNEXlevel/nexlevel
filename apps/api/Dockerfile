@@ -20,9 +20,6 @@ RUN npx nx run api:build
 # Production stage
 FROM docker.io/node:lts-alpine
 
-ENV HOST=0.0.0.0
-ENV PORT=3333
-
 WORKDIR /app
 
 # Copy built application from builder stage
