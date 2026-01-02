@@ -25,45 +25,33 @@ export class ProductsService {
     return products;
   }
 
-  getAllProducts(
-    filter?: ProductFilter,
-    page = 1,
-    pageSize = 12
-  ): PaginatedResponse<Product> {
+  getAllProducts(filter?: ProductFilter, page = 1, pageSize = 12): PaginatedResponse<Product> {
     let filteredProducts = [...this.products];
 
     if (filter) {
       if (filter.category) {
-        filteredProducts = filteredProducts.filter(
-          p => p.category === filter.category
-        );
+        filteredProducts = filteredProducts.filter((p) => p.category === filter.category);
       }
 
       if (filter.minPrice !== undefined) {
-        filteredProducts = filteredProducts.filter(
-          p => p.price >= filter.minPrice
-        );
+        filteredProducts = filteredProducts.filter((p) => p.price >= filter.minPrice);
       }
 
       if (filter.maxPrice !== undefined) {
-        filteredProducts = filteredProducts.filter(
-          p => p.price <= filter.maxPrice
-        );
+        filteredProducts = filteredProducts.filter((p) => p.price <= filter.maxPrice);
       }
 
       if (filter.inStock !== undefined) {
-        filteredProducts = filteredProducts.filter(
-          p => p.inStock === filter.inStock
-        );
+        filteredProducts = filteredProducts.filter((p) => p.inStock === filter.inStock);
       }
 
       if (filter.searchTerm) {
         const searchLower = filter.searchTerm.toLowerCase();
         filteredProducts = filteredProducts.filter(
-          p =>
+          (p) =>
             p.name.toLowerCase().includes(searchLower) ||
             p.description.toLowerCase().includes(searchLower) ||
-            p.category.toLowerCase().includes(searchLower)
+            p.category.toLowerCase().includes(searchLower),
         );
       }
     }
@@ -84,15 +72,15 @@ export class ProductsService {
   }
 
   getProductById(id: string): Product | null {
-    return this.products.find(p => p.id === id) || null;
+    return this.products.find((p) => p.id === id) || null;
   }
 
   getCategories(): string[] {
-    return [...new Set(this.products.map(p => p.category))];
+    return [...new Set(this.products.map((p) => p.category))];
   }
 
   getPriceRange(): { min: number; max: number } {
-    const prices = this.products.map(p => p.price);
+    const prices = this.products.map((p) => p.price);
     return {
       min: Math.min(...prices),
       max: Math.max(...prices),

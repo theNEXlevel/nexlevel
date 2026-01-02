@@ -66,13 +66,15 @@ describe('ProductListComponent', () => {
   });
 
   it('should load products and categories on init', () => {
-    mockProductsService.getProducts.mockReturnValue(of({
-      items: mockProducts,
-      total: 2,
-      page: 1,
-      pageSize: 10,
-      totalPages: 1,
-    }));
+    mockProductsService.getProducts.mockReturnValue(
+      of({
+        items: mockProducts,
+        total: 2,
+        page: 1,
+        pageSize: 10,
+        totalPages: 1,
+      }),
+    );
     mockProductsService.getCategories.mockReturnValue(of(['Electronics', 'Clothing']));
 
     component.ngOnInit();
@@ -91,13 +93,15 @@ describe('ProductListComponent', () => {
   });
 
   it('should apply filters when search term changes', () => {
-    mockProductsService.getProducts.mockReturnValue(of({
-      items: mockProducts,
-      total: 2,
-      page: 1,
-      pageSize: 10,
-      totalPages: 1,
-    }));
+    mockProductsService.getProducts.mockReturnValue(
+      of({
+        items: mockProducts,
+        total: 2,
+        page: 1,
+        pageSize: 10,
+        totalPages: 1,
+      }),
+    );
 
     component.searchTerm = 'Product 1';
     component.onSearchChange();
@@ -107,18 +111,20 @@ describe('ProductListComponent', () => {
         searchTerm: 'Product 1',
       }),
       1,
-      12
+      12,
     );
   });
 
   it('should apply filters when category changes', () => {
-    mockProductsService.getProducts.mockReturnValue(of({
-      items: [mockProducts[0]],
-      total: 1,
-      page: 1,
-      pageSize: 10,
-      totalPages: 1,
-    }));
+    mockProductsService.getProducts.mockReturnValue(
+      of({
+        items: [mockProducts[0]],
+        total: 1,
+        page: 1,
+        pageSize: 10,
+        totalPages: 1,
+      }),
+    );
 
     component.selectedCategory = 'Electronics';
     component.onFilterChange();
@@ -128,7 +134,7 @@ describe('ProductListComponent', () => {
         category: 'Electronics',
       }),
       1,
-      12
+      12,
     );
   });
 });

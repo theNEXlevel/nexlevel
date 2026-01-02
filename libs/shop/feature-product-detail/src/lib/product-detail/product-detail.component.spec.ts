@@ -81,9 +81,7 @@ describe('ProductDetailComponent', () => {
 
   it('should handle error when loading fails', () => {
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
-    mockProductsService.getProductById.mockReturnValue(
-      throwError(() => new Error('Network error'))
-    );
+    mockProductsService.getProductById.mockReturnValue(throwError(() => new Error('Network error')));
 
     component.ngOnInit();
 

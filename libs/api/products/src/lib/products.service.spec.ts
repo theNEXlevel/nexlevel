@@ -50,8 +50,7 @@ describe('ProductsService', () => {
 
       result.items.forEach((product) => {
         const matchesSearch =
-          product.name.toLowerCase().includes('product 1') ||
-          product.description.toLowerCase().includes('product 1');
+          product.name.toLowerCase().includes('product 1') || product.description.toLowerCase().includes('product 1');
         expect(matchesSearch).toBe(true);
       });
     });

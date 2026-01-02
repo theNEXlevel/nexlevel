@@ -143,7 +143,7 @@ test.describe('Navigation and User Flow', () => {
 
   test('should display loading states during navigation', async ({ page }) => {
     // Enable slow network to see loading states
-    await page.route('**/*', route => {
+    await page.route('**/*', (route) => {
       setTimeout(() => route.continue(), 100);
     });
 

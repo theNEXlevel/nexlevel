@@ -8,9 +8,7 @@ export interface Environment {
 export const CONFIG = new InjectionToken<Environment>('CONFIG', {
   providedIn: 'root',
   factory: () => {
-    throw new Error(
-      'CONFIG must be provided in the app config. Use provideConfig() to configure the environment.'
-    );
+    throw new Error('CONFIG must be provided in the app config. Use provideConfig() to configure the environment.');
   },
 });
 

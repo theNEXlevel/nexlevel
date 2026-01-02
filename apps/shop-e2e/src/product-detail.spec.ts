@@ -75,7 +75,10 @@ test.describe('Product Detail Page', () => {
     await page.goto('/products');
 
     // Find an in-stock product (one without "Out of Stock" badge)
-    const inStockProduct = page.locator('[class*="product-card"]').filter({ hasNot: page.locator('text="Out of Stock"') }).first();
+    const inStockProduct = page
+      .locator('[class*="product-card"]')
+      .filter({ hasNot: page.locator('text="Out of Stock"') })
+      .first();
     await inStockProduct.click();
 
     // Wait for product detail page
@@ -92,7 +95,7 @@ test.describe('Product Detail Page', () => {
     await expect(addToWishlistButton).toBeEnabled();
 
     // Test clicking Add to Cart (should show alert)
-    page.on('dialog', dialog => {
+    page.on('dialog', (dialog) => {
       expect(dialog.message()).toContain('Product added to cart');
       dialog.accept();
     });
@@ -104,10 +107,13 @@ test.describe('Product Detail Page', () => {
     await page.goto('/products');
 
     // Find an out-of-stock product
-    const outOfStockProduct = page.locator('[class*="product-card"]').filter({ has: page.locator('text="Out of Stock"') }).first();
+    const outOfStockProduct = page
+      .locator('[class*="product-card"]')
+      .filter({ has: page.locator('text="Out of Stock"') })
+      .first();
 
     // Get the product before clicking to handle case where there might not be any
-    const hasOutOfStock = await outOfStockProduct.count() > 0;
+    const hasOutOfStock = (await outOfStockProduct.count()) > 0;
 
     if (!hasOutOfStock) {
       // Skip test if no out-of-stock products
